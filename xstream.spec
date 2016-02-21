@@ -40,7 +40,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.3.1
-Release:        9.13%{?dist}
+Release:        9.14%{?dist}
 Summary:        Java XML serialization library
 
 License:        BSD
@@ -51,19 +51,19 @@ BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
 BuildRequires:  %{?scl_prefix_java_common}ant >= 0:1.6
 BuildRequires:  %{?scl_prefix_java_common}bea-stax >= 0:1.2.0
 BuildRequires:  %{?scl_prefix_java_common}bea-stax-api >= 0:1.0.1
-BuildRequires:  maven30-cglib >= 0:2.1.3
+BuildRequires:  %{?scl_prefix}cglib >= 0:2.1.3
 BuildRequires:  %{?scl_prefix_java_common}dom4j >= 0:1.6.1
 BuildRequires:  %{?scl_prefix_java_common}apache-commons-lang >= 0:2.1
 BuildRequires:  %{?scl_prefix_java_common}jakarta-oro
 BuildRequires:  %{?scl_prefix_java_common}jdom >= 0:1.0
-BuildRequires:  maven30-jettison >= 0:1.0
-BuildRequires:  maven30-joda-time >= 0:1.2.1
+BuildRequires:  %{?scl_prefix}jettison >= 0:1.0
+BuildRequires:  %{?scl_prefix}joda-time >= 0:1.2.1
 BuildRequires:  %{?scl_prefix_java_common}junit >= 0:3.8.1
 BuildRequires:  %{?scl_prefix_java_common}xpp3 >= 0:1.1.3.4
 BuildRequires:  unzip
 %if %with test
-BuildRequires:  maven30-jmock >= 0:1.0.1
-BuildRequires:  maven30-wstx >= 0:3.2.0
+BuildRequires:  %{?scl_prefix}jmock >= 0:1.0.1
+BuildRequires:  %{?scl_prefix}wstx >= 0:3.2.0
 %endif
 Requires:       %{?scl_prefix_java_common}xpp3-minimal
 
@@ -107,7 +107,7 @@ benchmark module for %{pkg_name}.
 
 %prep
 %setup -qn %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 find . -name "*.jar" -delete
 
@@ -123,7 +123,7 @@ find -name XomWriter.java -delete
 
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 # Replace bundled tars
 pushd xstream/lib
@@ -156,7 +156,7 @@ popd
 
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 # Directory structure
@@ -205,6 +205,9 @@ install -pm 644 xstream-benchmark/pom.xml \
 
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.3.1-9.14
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.3.1-9.13
 - maven33 rebuild
 
