@@ -40,7 +40,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.3.1
-Release:        9.14%{?dist}
+Release:        9.15%{?dist}
 Summary:        Java XML serialization library
 
 License:        BSD
@@ -205,6 +205,9 @@ install -pm 644 xstream-benchmark/pom.xml \
 
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.3.1-9.15
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.3.1-9.14
 - maven33 rebuild #2
 
